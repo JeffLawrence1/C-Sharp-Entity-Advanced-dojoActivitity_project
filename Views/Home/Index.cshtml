@@ -1,0 +1,69 @@
+@model dojoActivity_project.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Login:</h1>
+
+<form action="Login" method="post">
+
+    <label for="Email">Email:</label>
+    <input style="margin-left: 75px;" name="Email" type="text"/>
+    <br>
+    <br>
+
+    <label for="Password">Password:</label>
+    <input style="margin-left: 50px;" name="Password" type="password"/>
+    <br>
+    <br>
+    <button style="margin-left: 115px;" type="submit">Login</button>
+</form>
+@{
+    if (TempData["Error"] != null)
+    {
+<p style="color: Red;">@TempData["Error"]</p>
+    }
+}
+
+
+
+<h1>Register:</h1>
+
+
+<form asp-controller="Home" asp-action="Register" method="post">
+    
+    <span style="color: Red;" asp-validation-for="FirstName"></span>
+    <br>
+    <label asp-for="FirstName"></label>
+    <input style="margin-left: 50px;" asp-for="FirstName"/>
+    <br>
+    <br>
+    <span style="color: Red;" asp-validation-for="LastName"></span>
+    <br>
+    <label asp-for="LastName"></label>
+    <input style="margin-left: 50px;" asp-for="LastName"/>
+    <br>
+    <br>
+    <span style="color: Red;" asp-validation-for="Email"></span>
+    <br>
+    <label asp-for="Email"></label>
+    <input style="margin-left: 75px;" asp-for="Email"/>
+    <br>
+    <br>
+    <span style="color: Red;" asp-validation-for="Password"></span>
+    <br>
+    <label asp-for="Password"></label>
+    <input style="margin-left: 50px;" asp-for="Password"/>
+    <br>
+    <br>
+    <span style="color: Red;" asp-validation-for="Confirm"></span>
+    <br>
+    <label asp-for="Confirm"></label>
+    <input style="margin-left: 50px;" asp-for="Confirm"/>
+    <br>
+    <br>
+    <button style="margin-left: 115px;" type="submit">Register</button>
+</form>
+
+

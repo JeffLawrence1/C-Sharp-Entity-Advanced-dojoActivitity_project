@@ -1,0 +1,60 @@
+<p style="margin-left: 550px;"><a href="/Dash">Home</a>&emsp;&emsp;<a href="/Logout">Log off</a></p>
+<h1>Dojo Activity Center</h1>
+<p>_________________________________________________________________________________________________________________________</p>
+<br>
+<h2>@ViewBag.Activity.Title</h2>
+@{
+    foreach(var x in ViewBag.Activity1)
+    {
+        
+               if(@x.ActivityID == @ViewBag.ActID){
+                    if(@x.UserID == @ViewBag.ID){
+                    
+                        <form style="margin-left: 500px;" action="/Delete/@x.ActivityID" method="get">
+
+                             <button style="margin-left: 415px;" type="submit">Delete</button>
+                         </form>
+                    }
+                    else{
+                        bool help = false;
+                        foreach(var y in x.Guest){
+                            if(y.UserID == @ViewBag.ID){
+                                
+                                <form style="margin-left: 500px;" action="/Leave/@y.UserID/@x.ActivityID" method="get">
+
+                                    <button style="margin-left: 415px;" type="submit">Leave</button>
+                                </form>
+                                help = true;
+                            }
+                        }
+                    if(help == false){
+                           
+                        <form style="margin-left: 500px;" action="/Join/@x.ActivityID" method="get">
+
+                            <button style="margin-left: 415px;" type="submit">Join</button>
+                        </form>
+                        }
+                    }
+               }
+               
+    }
+}
+
+
+         <h3>Event Coordinator: @ViewBag.Activity.Coordinator</h3>
+         <br>
+
+
+        <h3>Description:</h3>
+        <p>@ViewBag.Activity.Description</p>
+        <br>
+        <h3>Participants:</h3>
+@{
+    foreach(var x in @ViewBag.Guest)
+    {
+        foreach(var y in @x.Guest)
+        {
+            <h4>@y.User.FirstName</h4>
+        }
+    }
+}

@@ -1,0 +1,42 @@
+<p style="margin-left: 550px;"><a href="Dash">Home</a>&emsp;&emsp;<a href="/Logout">Log off</a></p>
+<h1>Dojo Activity Center</h1>
+<p>_________________________________________________________________________________________________________________________</p>
+<br>
+<h1>Create an Activity!</h1>
+@{
+    if (TempData["Error"] != null)
+    {
+<p style="color: Red;">@TempData["Error"]</p>
+    }
+}
+
+<form action="Add" method="post">
+
+    <label for="Title">Title:</label>
+    <input style="margin-left: 50px;" name="Title" type="text"/>
+    <br>
+    <br>
+    <label for="Time">Time:</label>
+    <input style="margin-left: 50px;" name="Time" type="text"/>
+    <br>
+    <br>
+    <label for="Date">Date:</label>
+    <input style="margin-left: 75px;" type="date" name="Date"/>
+    <br>
+    <br>
+    <label for="Duration">Duration</label>
+        <input style="margin-left: 75px;" name="Duration" type="text"/>
+        <select style="margin-left: 20px;" name="Length">
+            <option value="Minutes">Minutes</option>
+            <option value="Hours">Hours</option>
+            <option value="Days">Days</option>
+        </select>   
+    <br>
+    <br>
+    <label for="Description">Description:</label>
+    <textarea style="margin-left: 50px;" rows="5" cols="40" name="Description"></textarea>
+    <br>
+    <br>
+    <button style="margin-left: 315px;" type="submit">Create Activity</button>
+</form>
+

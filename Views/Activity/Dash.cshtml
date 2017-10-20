@@ -1,0 +1,52 @@
+<p style="margin-left: 550px;">Welcome: @ViewBag.Name.FirstName!&emsp;&emsp;<a href="/Logout">Log off</a></p>
+<h1>Dojo Activity Center</h1>
+<p>_________________________________________________________________________________________________________________________</p>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>Number of Participants</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+@{
+    foreach(var x in ViewBag.Activity)
+    {
+        <tbody>
+            <tr>
+                <td><a href="/Activity/@x.ActivityID">@x.Title</a></td>
+                <td>@x.Date.ToString("MMM dd yyyy")  @x.Time</td>
+                <td>@x.Duration</td>
+                <td>@x.Coordinator</td>
+                <td>@x.Participants</td>
+                @{
+                    if(@x.UserID == @ViewBag.ID){
+                    <td><a href="/Delete/@x.ActivityID">Delete</a></td>
+                    }
+                    else{
+                        bool help = false;
+                        foreach(var y in x.Guest){
+                            if(y.UserID == @ViewBag.ID){
+                                <td><a href="/Leave/@y.UserID/@x.ActivityID">Leave</a></td>
+                                help = true;
+                            }
+                        }
+                        if(help == false){
+                            <td><a href="/Join/@x.ActivityID">Join</a></td>
+                        }
+                    }
+                }
+            </tr>
+        </tbody>
+    }
+}
+</table>
+<br>
+<form action="New" method="get">
+
+    <button style="margin-left: 415px;" type="submit">Add New Activity!</button>
+</form>
